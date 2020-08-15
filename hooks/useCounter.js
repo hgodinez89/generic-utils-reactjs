@@ -1,24 +1,29 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
-export const useCounter = ( initialState = 10 ) => {
-    const [state, setState] = useState(initialState);
+export const useCounter = ( initialValue = 0 ) => {
+    const [counter, setCounter] = useState(initialValue);
 
     const increment = ( factor = 1 ) => {
-        setState(state + factor);
+        setCounter(counter + factor);
     }
 
     const decrement = ( factor = 1 ) => {
-        setState(state - factor);
+        setCounter(counter - factor);
     }
 
     const reset = () => {
-        setState(initialState);
+        setCounter(initialValue);
     }
 
     return {
-        state,
+        counter,
         increment,
         reset,
         decrement
     };
-}
+};
+
+useCounter.propTypes = {
+    initialValue: PropTypes.number,
+};

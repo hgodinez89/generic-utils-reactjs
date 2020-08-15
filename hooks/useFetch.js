@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 
 export const useFetch = (url) => {
     const isMounted = useRef(true);
@@ -6,7 +7,7 @@ export const useFetch = (url) => {
 
     useEffect(() => {
         return () => {
-            // Esto accede al valor del useRef en la constante isMounted
+            // This line access to the useRefValue in const isMounted
             isMounted.current = false;
         };
     }, [])
@@ -29,10 +30,14 @@ export const useFetch = (url) => {
                 setState({
                     data: null,
                     loading: false,
-                    error: 'No fue posible cargar la data',
+                    error: `Error in fetch to ${url}`,
                 });
             });
     }, [url]);
 
     return state;
 }
+
+useFetch.propTypes = {
+    url: PropTypes.string.isRequired,
+};
