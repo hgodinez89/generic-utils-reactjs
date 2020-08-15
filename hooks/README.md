@@ -36,6 +36,7 @@ You can use this hook, when you need to get data from any API in your applicatio
 *Usage example*
 
 ```
+    const url = 'https://api.github.com/users/githubUser/repos';
     const { data, loading, error } = useFetch(url);
 ```
 
